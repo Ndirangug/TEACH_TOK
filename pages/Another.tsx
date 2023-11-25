@@ -1,4 +1,6 @@
 import * as React from 'react';
+import type {RootState} from '../store';
+import {useSelector} from 'react-redux';
 import {
   Button,
   SafeAreaView,
@@ -14,6 +16,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 function AnotherPage({navigation}) {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = isDarkMode ? Colors.darker : Colors.lighter;
+  const count = useSelector((state: RootState) => state.counter.value);
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -25,7 +28,7 @@ function AnotherPage({navigation}) {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <View style={styles.body}>
-          <Text style={{color: 'white'}}>Another Text</Text>
+          <Text style={{color: 'white'}}>Count {count}</Text>
           <Button title="Go Home" onPress={() => navigation.navigate('Home')} />
         </View>
       </ScrollView>

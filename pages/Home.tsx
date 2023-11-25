@@ -1,4 +1,8 @@
 import * as React from 'react';
+import type {RootState} from '../store';
+import {useSelector, useDispatch} from 'react-redux';
+import { decrement, increment } from '../features/counter/counterSlice';
+
 import {
   Button,
   SafeAreaView,
@@ -11,7 +15,9 @@ import {
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-function HomePage({navigation}) {
+function HomePage({ navigation }) {
+   const count = useSelector((state: RootState) => state.counter.value);
+   const dispatch = useDispatch();
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = isDarkMode ? Colors.darker : Colors.lighter;
 
@@ -30,6 +36,8 @@ function HomePage({navigation}) {
             title="Go to Another"
             onPress={() => navigation.navigate('Another')}
           />
+          <Button title="Increament" onPress={() => dispatch(increment())} />
+          <Button title="Decreament" onPress={() => dispatch(decrement())} />
         </View>
       </ScrollView>
     </SafeAreaView>
