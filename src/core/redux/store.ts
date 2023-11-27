@@ -1,9 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit';
-import counterReducer from './features/counter/counterSlice';
+import mcqReducer from './mcq/mcqSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    mcq: mcqReducer,
   },
 });
 
