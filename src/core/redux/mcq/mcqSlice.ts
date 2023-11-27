@@ -1,17 +1,17 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-interface MCQStateItem extends MCQ {
+export interface MCQStateItem extends MCQ {
   questionLoading: boolean;
   answerLoading: boolean;
   error: string | null;
   index: number;
 }
 
-interface MCQState {
+export interface MCQState {
   questions: MCQStateItem[];
 }
 
-const initialState: MCQState = {
+export const initialState: MCQState = {
   questions: [],
 };
 

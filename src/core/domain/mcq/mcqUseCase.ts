@@ -5,8 +5,8 @@ import {
   fetchQuestionStart,
   fetchQuestionSuccess,
 } from '../../redux/mcq/mcqSlice';
-import {store} from '../../redux/store';
-import mcqRepository, {AnswerFetchError} from './mcqRepository';
+import { store } from '../../redux/store';
+import mcqRepository, { AnswerFetchError } from './mcqRepository';
 
 const MCQUseCase = {
   fetchQuestion: async () => {
@@ -19,7 +19,7 @@ const MCQUseCase = {
     try {
       const question = await mcqRepository.fetchQuestion();
       store.dispatch(
-        fetchQuestionSuccess({...question, index: currentQuestionIndex}),
+        fetchQuestionSuccess({ ...question, index: currentQuestionIndex }),
       );
 
       const answer = await mcqRepository.fetchAnswer(question.id!);
@@ -32,12 +32,18 @@ const MCQUseCase = {
     } catch (error) {
       if (error instanceof AnswerFetchError) {
         store.dispatch(
-          fetchAnswerFailure({index: currentQuestionIndex, error}),
+          fetchAnswerFailure({
+            index: currentQuestionIndex,
+            error: error.message,
+          }),
         );
       } else {
         store.dispatch(
           // @ts-ignore
-          fetchQuestionFailure({index: currentQuestionIndex, error}),
+          fetchQuestionFailure({
+            index: currentQuestionIndex,
+            error: error.message,
+          }),
         );
       }
     }

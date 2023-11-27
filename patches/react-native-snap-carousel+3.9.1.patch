@@ -1,0 +1,113 @@
+diff --git a/node_modules/react-native-snap-carousel/.eslintrc b/node_modules/react-native-snap-carousel/.eslintrc
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/CHANGELOG.md b/node_modules/react-native-snap-carousel/CHANGELOG.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/CONTRIBUTING.md b/node_modules/react-native-snap-carousel/CONTRIBUTING.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/ISSUE_TEMPLATE.md b/node_modules/react-native-snap-carousel/ISSUE_TEMPLATE.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/LICENSE b/node_modules/react-native-snap-carousel/LICENSE
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/PULL_REQUEST_TEMPLATE.md b/node_modules/react-native-snap-carousel/PULL_REQUEST_TEMPLATE.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/README.md b/node_modules/react-native-snap-carousel/README.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/doc/CUSTOM_INTERPOLATIONS.md b/node_modules/react-native-snap-carousel/doc/CUSTOM_INTERPOLATIONS.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/doc/KNOWN_ISSUES.md b/node_modules/react-native-snap-carousel/doc/KNOWN_ISSUES.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/doc/PAGINATION.md b/node_modules/react-native-snap-carousel/doc/PAGINATION.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/doc/PARALLAX_IMAGE.md b/node_modules/react-native-snap-carousel/doc/PARALLAX_IMAGE.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/doc/PROPS_METHODS_AND_GETTERS.md b/node_modules/react-native-snap-carousel/doc/PROPS_METHODS_AND_GETTERS.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/doc/TIPS_AND_TRICKS.md b/node_modules/react-native-snap-carousel/doc/TIPS_AND_TRICKS.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/doc/VERSION_4.md b/node_modules/react-native-snap-carousel/doc/VERSION_4.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/src/carousel/Carousel.js b/node_modules/react-native-snap-carousel/src/carousel/Carousel.js
+old mode 100644
+new mode 100755
+index dae71a3..205964d
+--- a/node_modules/react-native-snap-carousel/src/carousel/Carousel.js
++++ b/node_modules/react-native-snap-carousel/src/carousel/Carousel.js
+@@ -1,6 +1,7 @@
+ import React, { Component } from 'react';
+-import { Animated, Easing, FlatList, I18nManager, Platform, ScrollView, View, ViewPropTypes } from 'react-native';
++import { Animated, Easing, FlatList, I18nManager, Platform, ScrollView, View } from 'react-native';
+ import PropTypes from 'prop-types';
++import { ViewPropTypes} from 'deprecated-react-native-prop-types'
+ import shallowCompare from 'react-addons-shallow-compare';
+ import {
+     defaultScrollInterpolator,
+diff --git a/node_modules/react-native-snap-carousel/src/index.js b/node_modules/react-native-snap-carousel/src/index.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/src/pagination/Pagination.js b/node_modules/react-native-snap-carousel/src/pagination/Pagination.js
+old mode 100644
+new mode 100755
+index 5c021cf..8e64308
+--- a/node_modules/react-native-snap-carousel/src/pagination/Pagination.js
++++ b/node_modules/react-native-snap-carousel/src/pagination/Pagination.js
+@@ -1,5 +1,6 @@
+ import React, { PureComponent } from 'react';
+-import { I18nManager, Platform, View, ViewPropTypes } from 'react-native';
++import { I18nManager, Platform, View } from 'react-native';
++import { ViewPropTypes} from 'deprecated-react-native-prop-types'
+ import PropTypes from 'prop-types';
+ import PaginationDot from './PaginationDot';
+ import styles from './Pagination.style';
+diff --git a/node_modules/react-native-snap-carousel/src/pagination/Pagination.style.js b/node_modules/react-native-snap-carousel/src/pagination/Pagination.style.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/src/pagination/PaginationDot.js b/node_modules/react-native-snap-carousel/src/pagination/PaginationDot.js
+old mode 100644
+new mode 100755
+index e59d196..a98985b
+--- a/node_modules/react-native-snap-carousel/src/pagination/PaginationDot.js
++++ b/node_modules/react-native-snap-carousel/src/pagination/PaginationDot.js
+@@ -1,5 +1,6 @@
+ import React, { PureComponent } from 'react';
+-import { View, Animated, Easing, TouchableOpacity, ViewPropTypes } from 'react-native';
++import { View, Animated, Easing, TouchableOpacity } from 'react-native';
++import { ViewPropTypes} from 'deprecated-react-native-prop-types'
+ import PropTypes from 'prop-types';
+ import styles from './Pagination.style';
+ 
+diff --git a/node_modules/react-native-snap-carousel/src/parallaximage/ParallaxImage.js b/node_modules/react-native-snap-carousel/src/parallaximage/ParallaxImage.js
+old mode 100644
+new mode 100755
+index 8bc774a..54a4324
+--- a/node_modules/react-native-snap-carousel/src/parallaximage/ParallaxImage.js
++++ b/node_modules/react-native-snap-carousel/src/parallaximage/ParallaxImage.js
+@@ -1,7 +1,8 @@
+ // Parallax effect inspired by https://github.com/oblador/react-native-parallax/
+ 
+ import React, { Component } from 'react';
+-import { View, ViewPropTypes, Image, Animated, Easing, ActivityIndicator, findNodeHandle } from 'react-native';
++import { View, Image, Animated, Easing, ActivityIndicator, findNodeHandle } from 'react-native';
++import { ViewPropTypes} from 'deprecated-react-native-prop-types'
+ import PropTypes from 'prop-types';
+ import styles from './ParallaxImage.style';
+ 
+diff --git a/node_modules/react-native-snap-carousel/src/parallaximage/ParallaxImage.style.js b/node_modules/react-native-snap-carousel/src/parallaximage/ParallaxImage.style.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/react-native-snap-carousel/src/utils/animations.js b/node_modules/react-native-snap-carousel/src/utils/animations.js
+old mode 100644
+new mode 100755

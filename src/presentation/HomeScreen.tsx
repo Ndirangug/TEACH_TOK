@@ -1,11 +1,11 @@
 import React from 'react';
 import {View} from 'react-native';
-import QuestionFeed from './mcq/containers/mcqFeed';
+import MCQFeed from './mcq/containers/mcqFeed';
 
 const HomeScreen = () => {
   return (
     <View>
-      <QuestionFeed />
+      <MCQFeed />
     </View>
   );
 };
