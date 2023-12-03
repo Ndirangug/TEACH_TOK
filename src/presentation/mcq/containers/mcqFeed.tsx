@@ -1,9 +1,10 @@
 // src/presentation/question/containers/QuestionFeed.js
 import React, {useEffect} from 'react';
-import {Dimensions} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import MCQUseCase from '../../../core/domain/mcq/mcqUseCase';
 import {useAppSelector} from '../../../core/redux/hooks';
+import Header from '../components/header';
 import MCQPage from '../components/mcqPage';
 
 const MCQFeed = () => {
@@ -26,32 +27,33 @@ const MCQFeed = () => {
   };
 
   return (
-    // <FlatList
-    //   onEndReached={fetchMore}
-    //   data={questions}
-    //   renderItem={({item, index, separators}) => (
-    //     <TouchableHighlight
-    //       key={index}
-    //       onShowUnderlay={separators.highlight}
-    //       onHideUnderlay={separators.unhighlight}>
-    //       <MCQPage mcq={item} />
-    //     </TouchableHighlight>
-    //   )}
-    // />
-
-    <Carousel
-      data={questions}
-      renderItem={_renderItem}
-      sliderHeight={Dimensions.get('window').height}
-      itemHeight={Dimensions.get('window').height}
-      vertical={true}
-      lockScrollWhileSnapping={true}
-      inactiveSlideScale={0.95} // Adjust the scale factor for inactive slides
-      inactiveSlideOpacity={0.7} // Adjust the opacity for inactive slides
-      onEndReached={fetchMore}
-      onEndReachedThreshold={0.1} // Adjust the threshold as needed
-    />
+    <View>
+      <Header style={styles.header} />
+      <Carousel
+        data={questions}
+        renderItem={_renderItem}
+        sliderHeight={Dimensions.get('window').height}
+        itemHeight={Dimensions.get('window').height}
+        vertical={true}
+        lockScrollWhileSnapping={true}
+        inactiveSlideScale={0.95} // Adjust the scale factor for inactive slides
+        inactiveSlideOpacity={0.7} // Adjust the opacity for inactive slides
+        onEndReached={fetchMore}
+        onEndReachedThreshold={0.1} // Adjust the threshold as needed
+      />
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  header: {
+    position: 'absolute',
+    top: 52,
+    left: 0,
+    right: 0,
+    backgroundColor: 'green',
+    zIndex: 1,
+  },
+});
 
 export default MCQFeed;
