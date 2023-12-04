@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {MCQStateItem} from '../../../core/redux/mcq/mcqSlice';
 import {padding} from '../../../utils/helpers';
+import Actions from './actions';
 import AnswerOption from './answerOption';
 import Playlist from './playlist';
 import Skeleton from './skeleton';
@@ -42,7 +43,9 @@ const MCQPage = ({mcq}: {mcq: MCQStateItem}) => {
               <UserAndTitle user={mcq.user?.name} title={mcq.description} />
             </View>
           </View>
-          <View style={styles.actionsContainer} />
+          <View style={styles.actionsContainer}>
+            <Actions />
+          </View>
         </View>
         <Playlist title={mcq.playlist} />
       </SafeAreaView>
@@ -85,6 +88,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     height: '100%',
     flex: 1,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   contentContainer: {
     backgroundColor: 'blue',
