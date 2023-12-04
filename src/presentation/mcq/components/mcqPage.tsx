@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
   Dimensions,
   ImageBackground,
@@ -16,10 +16,6 @@ import Skeleton from './skeleton';
 import UserAndTitle from './userAndTitle';
 
 const MCQPage = ({mcq}: {mcq: MCQStateItem}) => {
-  useEffect(() => {
-    console.log('mcq', mcq);
-  }, [mcq]);
-
   return mcq.questionLoading ? (
     <Skeleton />
   ) : (
@@ -35,7 +31,11 @@ const MCQPage = ({mcq}: {mcq: MCQStateItem}) => {
 
             <View style={styles.answersAndInfoContainer}>
               {mcq.options?.map(choice => (
-                <AnswerOption answer={choice} />
+                <AnswerOption
+                  key={choice.id}
+                  answer={choice}
+                  correctAnswers={mcq.correctAnswers}
+                />
               ))}
             </View>
 
@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
     paddingRight: 8,
   },
   actionsContainer: {
-    backgroundColor: 'red',
     height: '100%',
     flex: 1,
     display: 'flex',
@@ -93,7 +92,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   contentContainer: {
-    backgroundColor: 'blue',
     height: '100%',
     width: '100%',
     flex: 5,

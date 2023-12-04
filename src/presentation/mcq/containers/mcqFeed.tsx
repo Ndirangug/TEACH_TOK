@@ -16,7 +16,6 @@ const MCQFeed = () => {
   }, []);
 
   const fetchMore = () => {
-    console.log('fetching more');
     MCQUseCase.fetchQuestion();
     MCQUseCase.fetchQuestion();
     MCQUseCase.fetchQuestion();

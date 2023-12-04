@@ -26,6 +26,9 @@ const mcqRepository = {
   fetchAnswer: async (questionId: number): Promise<MCQResponse> => {
     try {
       const response = await api.get(`/reveal?id=${questionId}`);
+      response.data.correctOptions = response.data.correct_options;
+      delete response.data.correct_options;
+
       return response.data;
     } catch (error) {
       throw new AnswerFetchError(`${error}`);
