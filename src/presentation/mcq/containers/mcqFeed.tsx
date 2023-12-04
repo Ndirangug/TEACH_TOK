@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     top: 52,
     left: 0,
     right: 0,
-    backgroundColor: 'green',
     zIndex: 1,
   },
 });
