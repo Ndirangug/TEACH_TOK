@@ -3,24 +3,24 @@ interface MCQUser {
   avatar: string;
 }
 
-interface MCQChices {
+interface MCQChoice {
   id: string;
   answer: string;
 }
 
 interface MCQResponse {
   id: number;
-  correctOptions: MCQChices[];
+  correctOptions: MCQChoice[];
 }
 
 interface MCQ {
   type?: string;
   question?: string;
-  correctAnswers?: MCQChices[];
+  correctAnswers?: MCQChoice[];
   id?: number;
   playlist?: string;
   description?: string;
   image?: string;
-  choices?: MCQChices[];
+  options?: MCQChoice[];
   user?: MCQUser;
 }

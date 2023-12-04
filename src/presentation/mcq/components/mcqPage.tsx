@@ -1,16 +1,24 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Dimensions,
   ImageBackground,
   SafeAreaView,
   StyleSheet,
+  Text,
   View,
 } from 'react-native';
 import {MCQStateItem} from '../../../core/redux/mcq/mcqSlice';
+import {padding} from '../../../utils/helpers';
+import AnswerOption from './answerOption';
 import Playlist from './playlist';
 import Skeleton from './skeleton';
+import UserAndTitle from './userAndTitle';
 
 const MCQPage = ({mcq}: {mcq: MCQStateItem}) => {
+  useEffect(() => {
+    console.log('mcq', mcq);
+  }, [mcq]);
+
   return mcq.questionLoading ? (
     <Skeleton />
   ) : (
@@ -19,7 +27,21 @@ const MCQPage = ({mcq}: {mcq: MCQStateItem}) => {
       style={styles.backgroundImage}>
       <SafeAreaView style={styles.container}>
         <View style={styles.content}>
-          <View style={styles.contentContainer} />
+          <View style={styles.contentContainer}>
+            <View style={styles.questionContainer}>
+              <Text style={styles.question}>{mcq.question}</Text>
+            </View>
+
+            <View style={styles.answersAndInfoContainer}>
+              {mcq.options?.map(choice => (
+                <AnswerOption answer={choice} />
+              ))}
+            </View>
+
+            <View>
+              <UserAndTitle user={mcq.user?.name} title={mcq.description} />
+            </View>
+          </View>
           <View style={styles.actionsContainer} />
         </View>
         <Playlist title={mcq.playlist} />
@@ -70,6 +92,28 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 5,
     marginRight: 12,
+    paddingTop: 99,
+    display: 'flex',
+    paddingBottom: 16,
+  },
+  questionContainer: {
+    flex: 1,
+    alignItems: 'flex-start',
+    ...padding(40, 0),
+  },
+  question: {
+    color: 'white',
+    fontFamily: 'SF Pro Rounded',
+    fontSize: 22,
+    fontWeight: '500',
+    backgroundColor: 'rgba(0,0,0, 0.25)',
+    borderRadius: 8,
+  },
+  answersAndInfoContainer: {
+    flex: 1,
+    alignItems: 'flex-start',
+    gap: 8,
+    marginBottom: 24,
   },
 });
 
