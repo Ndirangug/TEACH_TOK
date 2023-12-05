@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import Snackbar from 'react-native-snackbar';
 
 export interface MCQStateItem extends MCQ {
   questionLoading: boolean;
@@ -37,7 +38,11 @@ const questionSlice = createSlice({
       };
     },
     fetchQuestionFailure: (state, action) => {
-      console.error('fetch question failure', action);
+      //console.error('fetch question failure', action);
+      Snackbar.show({
+        text: "Network Error! Can't fetch question. Try again",
+        duration: 5000,
+      });
 
       const index = action.payload.index;
       state.questions[index].questionLoading = false;

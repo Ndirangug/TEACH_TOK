@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
+  Animated,
+  LayoutChangeEvent,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableNativeFeedback,
   View,
 } from 'react-native';
@@ -11,13 +12,47 @@ import FastImage from 'react-native-fast-image';
 const AnswerOption = ({
   answer,
   correctAnswers,
+  tauntDelay,
 }: {
   answer: MCQChoice;
   correctAnswers?: MCQChoice[];
+  tauntDelay: number;
 }) => {
   const [answerRevealed, setAnswerRevealed] = useState(false);
   const [backgroundStyle, setBackgroundStyle] = useState({});
   const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
+  const [containerWidth, setContainerWIdth] = useState(0);
+  const [textWidth, setTextWIdth] = useState(0);
+
+  const scrollX = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    const tauntAnimation = () => {
+      Animated.sequence([
+        Animated.spring(scrollX, {
+          toValue: 10,
+          useNativeDriver: false,
+          friction: 4,
+          delay: tauntDelay,
+        }),
+        Animated.spring(scrollX, {
+          toValue: -10,
+          useNativeDriver: false,
+          friction: 4,
+        }),
+        Animated.spring(scrollX, {
+          toValue: 0,
+          useNativeDriver: false,
+          friction: 4,
+        }),
+      ]).start();
+    };
+
+    if (textWidth > containerWidth) {
+      tauntAnimation();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [textWidth]);
 
   useEffect(() => {
     if (answerRevealed) {
@@ -37,34 +72,48 @@ const AnswerOption = ({
     setAnswerRevealed(true);
   };
 
+  const onContainerLayout = (event: LayoutChangeEvent) => {
+    const {width} = event.nativeEvent.layout;
+    setContainerWIdth(width);
+  };
+
+  const onTextLayout = (event: LayoutChangeEvent) => {
+    const {width} = event.nativeEvent.layout;
+    setTextWIdth(width);
+  };
+
   return (
-    <TouchableNativeFeedback onPress={revealAnswer}>
-      <View style={[styles.container, backgroundStyle]}>
-        {answerRevealed ? (
-          <View
-            style={
+    <View
+      onLayout={onContainerLayout}
+      style={[styles.container, backgroundStyle]}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <TouchableNativeFeedback onLayout={onTextLayout} onPress={revealAnswer}>
+          <Animated.Text
+            style={{...styles.text, transform: [{translateX: scrollX}]}}>
+            {answer.answer}
+          </Animated.Text>
+        </TouchableNativeFeedback>
+      </ScrollView>
+
+      {answerRevealed ? (
+        <View
+          style={
+            isCorrectAnswer ? styles.correctthumbsIcon : styles.wrongthumbsIcon
+          }>
+          <FastImage
+            resizeMode="contain"
+            style={{width: 56, height: 56}}
+            source={
               isCorrectAnswer
-                ? styles.correctthumbsIcon
-                : styles.wrongthumbsIcon
-            }>
-            <FastImage
-              resizeMode="contain"
-              style={{width: 56, height: 56}}
-              source={
-                isCorrectAnswer
-                  ? require('../../../../assets/images/thumbs_up.gif')
-                  : require('../../../../assets/images/thumbs_down.gif')
-              }
-            />
-          </View>
-        ) : (
-          <View />
-        )}
-        <ScrollView>
-          <Text style={styles.text}>{answer.answer}</Text>
-        </ScrollView>
-      </View>
-    </TouchableNativeFeedback>
+                ? require('../../../../assets/images/thumbs_up.gif')
+                : require('../../../../assets/images/thumbs_down.gif')
+            }
+          />
+        </View>
+      ) : (
+        <View />
+      )}
+    </View>
   );
 };
 
@@ -73,21 +122,22 @@ const styles = StyleSheet.create({
     display: 'flex',
     width: 294,
     height: 52,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     gap: 10,
     padding: 12,
     backgroundColor: 'rgba(255, 255, 255, 0.5)',
     borderRadius: 8,
     position: 'relative',
+    justifyContent: 'center',
   },
   text: {
-    width: 266,
-    textShadow: '1px 1.5px 2px rgba(0, 0, 0, 0.45)',
+    //textShadow: '1px 1.5px 2px rgba(0, 0, 0, 0.45)',
     fontFamily: 'SF Pro Rounded',
     fontSize: 17,
     fontStyle: 'normal',
     fontWeight: '500',
     color: 'white',
+    minWidth: 294,
   },
   wrongAnswer: {
     backgroundColor: 'rgba(220, 95, 95, 0.70) !important',
@@ -104,6 +154,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     top: 9,
+  },
+  scrolView: {
+    width: '100%',
   },
 });
 

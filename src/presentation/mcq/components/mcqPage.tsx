@@ -30,11 +30,12 @@ const MCQPage = ({mcq}: {mcq: MCQStateItem}) => {
             </View>
 
             <View style={styles.answersAndInfoContainer}>
-              {mcq.options?.map(choice => (
+              {mcq.options?.map((choice, i) => (
                 <AnswerOption
                   key={choice.id}
                   answer={choice}
                   correctAnswers={mcq.correctAnswers}
+                  tauntDelay={i * 500}
                 />
               ))}
             </View>
