@@ -38,7 +38,6 @@ const questionSlice = createSlice({
       };
     },
     fetchQuestionFailure: (state, action) => {
-      //console.error('fetch question failure', action);
       Snackbar.show({
         text: "Network Error! Can't fetch question. Try again",
         duration: 5000,
@@ -47,9 +46,6 @@ const questionSlice = createSlice({
       const index = action.payload.index;
       state.questions[index].questionLoading = false;
       state.questions[index].error = action.payload.error;
-    },
-    fetchAnswerStart: (_state, _action) => {
-      //const index = action.payload.index;
     },
     fetchAnswerSuccess: (state, action) => {
       const index = action.payload.index;
@@ -69,7 +65,6 @@ export const {
   fetchQuestionStart,
   fetchQuestionSuccess,
   fetchQuestionFailure,
-  fetchAnswerStart,
   fetchAnswerSuccess,
   fetchAnswerFailure,
 } = questionSlice.actions;
