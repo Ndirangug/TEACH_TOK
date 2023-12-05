@@ -28,7 +28,13 @@ const styles = StyleSheet.create({
     borderRadius: 45,
     borderColor: 'white',
     borderWidth: 1,
-    boxShadow: '1px 1.5px 2px 0px rgba(0, 0, 0, 0.45)',
+    shadowColor: 'rgba(0, 0, 0, 0.45)',
+    shadowOffset: {
+      width: 1,
+      height: 1.5,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
   },
   followBtn: {
     position: 'absolute',

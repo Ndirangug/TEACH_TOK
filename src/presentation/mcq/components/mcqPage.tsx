@@ -7,10 +7,11 @@ import {
   Text,
   View,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import {MCQStateItem} from '../../../core/redux/mcq/mcqSlice';
 import {padding} from '../../../utils/helpers';
+import Actions from '../containers/actions';
 import UserAndTitle from '../containers/userAndTitle';
-import Actions from './actions';
 import AnswerOption from './answerOption';
 import Playlist from './playlist';
 import Skeleton from './skeleton';
@@ -20,34 +21,38 @@ const MCQPage = ({mcq}: {mcq: MCQStateItem}) => {
     <Skeleton />
   ) : (
     <ImageBackground source={{uri: mcq.image}} style={styles.backgroundImage}>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.content}>
-          <View style={styles.contentContainer}>
-            <View style={styles.questionContainer}>
-              <Text style={styles.question}>{mcq.question}</Text>
-            </View>
+      <LinearGradient
+        colors={['rgba(0, 0, 0, 0.45)', 'rgba(0, 0, 0, 0.45)']}
+        style={styles.linearGradient}>
+        <SafeAreaView style={styles.container}>
+          <View style={styles.content}>
+            <View style={styles.contentContainer}>
+              <View style={styles.questionContainer}>
+                <Text style={styles.question}>{mcq.question}</Text>
+              </View>
 
-            <View style={styles.answersAndInfoContainer}>
-              {mcq.options?.map((choice, i) => (
-                <AnswerOption
-                  key={choice.id}
-                  answer={choice}
-                  correctAnswers={mcq.correctAnswers}
-                  tauntDelay={i * 500}
-                />
-              ))}
-            </View>
+              <View style={styles.answersAndInfoContainer}>
+                {mcq.options?.map((choice, i) => (
+                  <AnswerOption
+                    key={choice.id}
+                    answer={choice}
+                    correctAnswers={mcq.correctAnswers}
+                    tauntDelay={i * 500}
+                  />
+                ))}
+              </View>
 
-            <View>
-              <UserAndTitle user={mcq.user?.name} title={mcq.description} />
+              <View>
+                <UserAndTitle user={mcq.user?.name} title={mcq.description} />
+              </View>
+            </View>
+            <View style={styles.actionsContainer}>
+              <Actions avatarUrl={mcq.user?.avatar} />
             </View>
           </View>
-          <View style={styles.actionsContainer}>
-            <Actions avatarUrl={mcq.user?.avatar} />
-          </View>
-        </View>
-        <Playlist title={mcq.playlist} />
-      </SafeAreaView>
+          <Playlist title={mcq.playlist} />
+        </SafeAreaView>
+      </LinearGradient>
     </ImageBackground>
   );
 };
@@ -59,11 +64,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     flexDirection: 'column',
+    paddingBottom: 50,
   },
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.45)',
+  },
+  linearGradient: {
+    flex: 1,
   },
   content: {
     flex: 1,
@@ -99,7 +109,8 @@ const styles = StyleSheet.create({
     fontFamily: 'SF Pro Rounded',
     fontSize: 22,
     fontWeight: '500',
-    backgroundColor: 'rgba(0,0,0, 0.25)',
+    padding: 6,
+    backgroundColor: 'rgba(0,0,0, 0.5)',
     borderRadius: 8,
   },
   answersAndInfoContainer: {

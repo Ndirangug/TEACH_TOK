@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import ActionItem from './actionItem';
-import FollowButton from './followButton';
+import ActionItem from '../components/actionItem';
+import FollowButton from '../components/followButton';
 
 const Actions = ({avatarUrl}: {avatarUrl?: string}) => {
   return (

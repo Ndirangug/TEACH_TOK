@@ -1,6 +1,6 @@
 // src/presentation/question/containers/QuestionFeed.js
 import React, {useEffect} from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {Dimensions, SafeAreaView, StyleSheet} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import MCQUseCase from '../../../core/domain/mcq/mcqUseCase';
 import {useAppSelector} from '../../../core/redux/hooks';
@@ -26,7 +26,7 @@ const MCQFeed = () => {
   };
 
   return (
-    <View>
+    <SafeAreaView>
       <Header style={styles.header} />
       <Carousel
         data={questions}
@@ -40,14 +40,14 @@ const MCQFeed = () => {
         onEndReached={fetchMore}
         onEndReachedThreshold={0.1}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   header: {
     position: 'absolute',
-    top: 52,
+    top: 24,
     left: 0,
     right: 0,
     zIndex: 1,

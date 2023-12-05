@@ -144,13 +144,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    //textShadow: '1px 1.5px 2px rgba(0, 0, 0, 0.45)',
     fontFamily: 'SF Pro Rounded',
     fontSize: 17,
     fontStyle: 'normal',
     fontWeight: '500',
     color: 'white',
     minWidth: 294,
+    textShadowOffset: {width: 1, height: 1.5},
+    textShadowRadius: 2,
+    textShadowColor: 'rgba(0, 0, 0, 0.45)',
   },
   wrongAnswer: {
     backgroundColor: 'rgba(220, 95, 95, 0.70) !important',
