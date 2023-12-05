@@ -1,8 +1,15 @@
-import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Image, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {useAppSelector} from '../../../core/redux/hooks';
 
-const TimerDisplay = ({style}) => {
-  //add timer slice
+const TimerDisplay = ({style}: {style: ViewStyle}) => {
+  const seconds = useAppSelector(state => state.timer.seconds);
+  const [minutes, setMinutes] = useState(0);
+
+  useEffect(() => {
+    setMinutes(Math.floor(seconds / 60));
+  }, [seconds]);
+
   return (
     <View style={[styles.container, style]}>
       <Image
@@ -10,7 +17,7 @@ const TimerDisplay = ({style}) => {
         style={styles.image}
         source={require('../../../../assets/images/timer.png')}
       />
-      <Text style={styles.text}>10m</Text>
+      <Text style={styles.text}>{minutes}m</Text>
     </View>
   );
 };

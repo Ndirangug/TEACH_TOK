@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 import Snackbar from 'react-native-snackbar';
 
 export interface MCQStateItem extends MCQ {
@@ -12,7 +12,7 @@ export interface MCQState {
   questions: MCQStateItem[];
 }
 
-export const initialState: MCQState = {
+const initialState: MCQState = {
   questions: [],
 };
 

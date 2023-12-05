@@ -1,9 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit';
 import mcqReducer from './mcq/mcqSlice';
+import timerReducer from './timer/timerSlice';
 
 export const store = configureStore({
   reducer: {
     mcq: mcqReducer,
+    timer: timerReducer,
   },
 });
 

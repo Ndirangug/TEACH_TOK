@@ -1,10 +1,13 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import ActionItem from './actionItem';
+import FollowButton from './followButton';
 
-const Actions = () => {
+const Actions = ({avatarUrl}: {avatarUrl?: string}) => {
   return (
     <View style={styles.container}>
+      <FollowButton avatarUrl={avatarUrl} />
+
       <ActionItem
         icon={require('../../../../assets/images/like.png')}
         label="87"
@@ -32,6 +35,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     gap: 15,
     justifyContent: 'flex-end',
+    paddingBottom: 16,
   },
 });
 

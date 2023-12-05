@@ -4,12 +4,12 @@ import {Dimensions, StyleSheet, View} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import MCQUseCase from '../../../core/domain/mcq/mcqUseCase';
 import {useAppSelector} from '../../../core/redux/hooks';
+import {MCQStateItem} from '../../../core/redux/mcq/mcqSlice';
 import Header from '../components/header';
 import MCQPage from '../components/mcqPage';
 
 const MCQFeed = () => {
   const questions = useAppSelector(state => state.mcq.questions);
-  //scroll, when get to
 
   useEffect(() => {
     fetchMore();
@@ -21,7 +21,7 @@ const MCQFeed = () => {
     MCQUseCase.fetchQuestion();
   };
 
-  const _renderItem = ({item, index}) => {
+  const _renderItem = ({item, index}: {item: MCQStateItem; index: number}) => {
     return <MCQPage key={index} mcq={item} />;
   };
 

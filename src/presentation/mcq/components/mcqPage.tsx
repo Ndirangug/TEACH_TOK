@@ -45,22 +45,12 @@ const MCQPage = ({mcq}: {mcq: MCQStateItem}) => {
             </View>
           </View>
           <View style={styles.actionsContainer}>
-            <Actions />
+            <Actions avatarUrl={mcq.user?.avatar} />
           </View>
         </View>
         <Playlist title={mcq.playlist} />
       </SafeAreaView>
     </ImageBackground>
-
-    //background
-    //safearea
-    //titlebar - counter, for you, search -very top
-    //
-    // question
-    // options
-    // actions
-    //
-    //footer-very bottom
   );
 };
 
