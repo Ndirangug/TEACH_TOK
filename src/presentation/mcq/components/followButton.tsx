@@ -11,7 +11,7 @@ const FollowButton = ({avatarUrl}: {avatarUrl?: string}) => {
         }}
       />
       <View style={styles.followBtn}>
-        <Image source={require('../../../../assets/images/follow.png')}></Image>
+        <Image source={require('../../../../assets/images/follow.png')} />
       </View>
     </View>
   );
