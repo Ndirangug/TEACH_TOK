@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
+  Easing,
   LayoutChangeEvent,
   ScrollView,
   StyleSheet,
@@ -29,21 +30,33 @@ const AnswerOption = ({
   useEffect(() => {
     const tauntAnimation = () => {
       Animated.sequence([
-        Animated.spring(scrollX, {
-          toValue: 10,
+        Animated.timing(scrollX, {
+          toValue: -30,
+          duration: 500,
+          easing: Easing.linear,
           useNativeDriver: false,
-          friction: 4,
           delay: tauntDelay,
         }),
-        Animated.spring(scrollX, {
-          toValue: -10,
-          useNativeDriver: false,
-          friction: 4,
-        }),
-        Animated.spring(scrollX, {
+        Animated.timing(scrollX, {
           toValue: 0,
+          duration: 500,
+          easing: Easing.linear,
           useNativeDriver: false,
-          friction: 4,
+          delay: tauntDelay,
+        }),
+        Animated.timing(scrollX, {
+          toValue: -30,
+          duration: 500,
+          easing: Easing.linear,
+          useNativeDriver: false,
+          delay: tauntDelay,
+        }),
+        Animated.timing(scrollX, {
+          toValue: 0,
+          duration: 500,
+          easing: Easing.linear,
+          useNativeDriver: false,
+          delay: tauntDelay,
         }),
       ]).start();
     };

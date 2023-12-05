@@ -9,19 +9,17 @@ import {
 } from 'react-native';
 import {MCQStateItem} from '../../../core/redux/mcq/mcqSlice';
 import {padding} from '../../../utils/helpers';
+import UserAndTitle from '../containers/userAndTitle';
 import Actions from './actions';
 import AnswerOption from './answerOption';
 import Playlist from './playlist';
 import Skeleton from './skeleton';
-import UserAndTitle from './userAndTitle';
 
 const MCQPage = ({mcq}: {mcq: MCQStateItem}) => {
   return mcq.questionLoading ? (
     <Skeleton />
   ) : (
-    <ImageBackground
-      source={{uri: mcq.image}} // Replace with the URL to your image
-      style={styles.backgroundImage}>
+    <ImageBackground source={{uri: mcq.image}} style={styles.backgroundImage}>
       <SafeAreaView style={styles.container}>
         <View style={styles.content}>
           <View style={styles.contentContainer}>

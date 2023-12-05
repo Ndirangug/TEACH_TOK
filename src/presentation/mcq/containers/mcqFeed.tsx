@@ -35,10 +35,10 @@ const MCQFeed = () => {
         itemHeight={Dimensions.get('window').height}
         vertical={true}
         lockScrollWhileSnapping={true}
-        inactiveSlideScale={0.95} // Adjust the scale factor for inactive slides
-        inactiveSlideOpacity={0.7} // Adjust the opacity for inactive slides
+        inactiveSlideScale={0.95}
+        inactiveSlideOpacity={0.7}
         onEndReached={fetchMore}
-        onEndReachedThreshold={0.1} // Adjust the threshold as needed
+        onEndReachedThreshold={0.1}
       />
     </View>
   );
