@@ -34,7 +34,7 @@ const AppNavigator = (): JSX.Element => {
           headerShown: false,
           tabBarActiveTintColor: 'white',
           tabBarInactiveTintColor: 'rgba(255, 255, 255, 0.4)',
-          tabBarIcon: ({focused, color, size}) => {
+          tabBarIcon: ({focused}) => {
             let icon: ImageSourcePropType = require('../../../assets/images/home_active.png');
 
             if (route.name === 'Home') {
