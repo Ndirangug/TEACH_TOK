@@ -1,8 +1,8 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import TimerDisplay from './timer';
 
-const Header = ({style}) => {
+const Header = ({style}: {style: ViewStyle}) => {
   return (
     <View style={[styles.container, style]}>
       <TimerDisplay style={{flex: 1}} />
